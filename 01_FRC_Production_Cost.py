@@ -5,6 +5,23 @@
 # ask how much it costs to make
 # create number checking function
 
+# number checker for price
+def intcheck(item, low):
+    valid = False
+    while not valid:
+            error = "Whoops! Please enter a valid number above 0!"
+
+            try:
+                response = float(input("Item Cost: $ "))
+                if low < response:
+                    return response
+                else:
+                    print (error)
+                    print ()
+
+            except ValueError:
+                print(error)
+
 item_cost = []
 expenses = []
 
@@ -19,7 +36,7 @@ while item.lower() != "xxx":
         break
 
     # Get the cost (replace with number checking function)
-    cost = float(input("Item Cost: $"))
+    cost = intcheck("Item Cost: ", 0)
 
     # add item name and cost to 'item list'
     item_cost.append(item)
