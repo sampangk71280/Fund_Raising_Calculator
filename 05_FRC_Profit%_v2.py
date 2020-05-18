@@ -11,11 +11,11 @@ def profit_check(question, number):
         error = "Please enter an exact number or percentage you want to raise!"
 
         try:
-            response = input("Do you to increase the profit by percentage (%) or dollars ($)?").lower()
-            if response == "%" or "percentage":
-                percentage = float(input("What percentage? "))
-            elif response == "$" or "dollars" or "dollar":
-                dollar = float(input("How much? "))
+            response = input(question).lower()
+            if response == dollar:
+                response = int(input("How much? "))
+            elif response == percent:
+                response = int(input("What percentage? "))
 
 
                 if number < response:
@@ -24,11 +24,13 @@ def profit_check(question, number):
                     print(error)
                     print()
 
+
         except ValueError:
             print(error)
 
-# Main routine
-symbol = ["%", "percentage","dollar","dollars","$'"]
 
+# main routine
+dollar = ["$", "dollar", "dollars"]
+percent = ["%","percentage", "percent"]
 a = profit_check("Do you want to increase the profit by percentage (%) or dollars ($)?", 0)
-
+print(a)
