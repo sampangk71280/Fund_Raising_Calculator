@@ -12,17 +12,17 @@ def profit_check(question, number):
 
         try:
             response = input(question).lower()
-            if response == dollar:
+            if response in dollar:
                 response = int(input("How much? "))
-            elif response == percent:
+            elif response in percent:
                 response = int(input("What percentage? "))
 
 
-                if number < response:
-                    return response
-                else:
-                    print(error)
-                    print()
+            if number < response:
+                return response
+            else:
+                print(error)
+                print()
 
 
         except ValueError:
