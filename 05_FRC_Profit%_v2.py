@@ -9,29 +9,42 @@
 def profit_check(question, number):
     valid = False
     while not valid:
-        # errpr message
-        error = "Please enter an exact number or percentage you want to raise!"
+        # error messages
+        number_error  = "Please enter an exact number or percent you want to raise!"
+        error2 = "Please choose % or $!"
 
         try:
-            response = input(question).lower()
-            # ask user how much if they reply with dollar
-            if response in dollar:
-                response = int(input("How much? "))
-            # ask user what percent if they reply with percentage
-            elif response in percent:
-                response = int(input("What percentage? "))
+            # keeps asking user if they want $ or % until they give a valid response
+            percent_error = "yes"
+            while percent_error == "yes":
+
+                response = input(question).lower()
+                # ask user how much if they reply with dollar
+                if response in dollar:
+                    response = float(input("How much? "))
+                    break
+                # ask user what percent if they reply with percentage
+                elif response in percent:
+                    response = float(input("What percentage? "))
+                    break
+                # if user inputs nothing or letters, prints out error message
+                else:
+                    print(error2)
+                    percent_error = "yes"
+                    continue
 
             # response has to be higher than a minimum number
             if number < response:
                 return response
+            elif response == number:
+                print("Please choose a higher number than {}".format(number))
             # if not, print error message
-            else:
-                print(error)
-                print()
+            elif number > response:
+                print(number_error)
 
 
         except ValueError:
-            print(error)
+            print(number_error)
 
 
 # main routine
