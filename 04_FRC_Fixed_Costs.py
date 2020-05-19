@@ -26,10 +26,10 @@ fixed_cost = []
 expenses = []
 
 # Gets inputs and add to item_cost list
+print("Fixed Costs")
 item = ""
 while item.lower() != "xxx":
     fixed_cost = []
-    print("Fixed Costs")
     item = input("Item Name: ")
 
     # If the user enters the exit code, break out of the loop

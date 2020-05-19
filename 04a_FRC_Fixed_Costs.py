@@ -66,7 +66,6 @@ while fixed.lower() != "xxx":
     expenses.append(fixed_costs)
 
 
-
 # Sort by cost...
 expenses.sort(key=lambda x: x[1], reverse=1)
 
