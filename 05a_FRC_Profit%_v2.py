@@ -50,12 +50,15 @@ def profit_check(question, number):
 def intcheck(item, low):
     valid = False
     while not valid:
+            # error message
             error = "Whoops! Please enter a valid number above 0!"
 
             try:
                 response = float(input("Item Cost: $ "))
+                # if the number is above low, return the number
                 if low < response:
                     return response
+                # if it's below low, print error until a valid response is given
                 else:
                     print (error)
                     print ()
@@ -66,7 +69,7 @@ def intcheck(item, low):
 # code borrowed from zoom call and edited to fit
 # asks the user the name and cost of variable and fixed items
 def get_cost(cost_type):
-    all_expenses = [] #holds entire breakdown
+    expenses = [] #holds entire breakdown
 
     # Input Heading...
     print("***** {} ******".format(cost_type))
@@ -97,8 +100,6 @@ def get_cost(cost_type):
     return(expenses)
 
 # Main Routine
-variable_cost = []
-fixed_cost = []
 expenses = []
 total = 0
 
