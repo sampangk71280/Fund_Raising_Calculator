@@ -50,12 +50,15 @@ def profit_check(question, number):
 def intcheck(item, low):
     valid = False
     while not valid:
+            # error message
             error = "Whoops! Please enter a valid number above 0!"
 
             try:
                 response = float(input("Item Cost: $ "))
+                # if the number is above low, return the number
                 if low < response:
                     return response
+                # if it's below low, print error until a valid response is given
                 else:
                     print (error)
                     print ()
@@ -66,8 +69,8 @@ def intcheck(item, low):
 # code borrowed from zoom call and edited to fit
 # asks the user the name and cost of variable and fixed items
 def get_cost(cost_type):
-    expenses = [] # if expense list is here, fixed and variable cost listed correctly, but expenses is zero
-                 # without it, fixed and variable list has the same items, but average is printed out
+    expenses = [] #holds entire breakdown
+
     # Input Heading...
     print("***** {} ******".format(cost_type))
 
@@ -97,12 +100,12 @@ def get_cost(cost_type):
     return(expenses)
 
 # Main Routine
-total = 0 # total cost of items
 expenses = []
+total = 0
 
 # possible user response
-dollar = ["$", "dollar", "dollars", "d", "D"]
-percent = ["%","percentage", "percent", "p", "D"]
+dollar = ["$", "dollar", "dollars"]
+percent = ["%","percentage", "percent"]
 
 # asks user how much money they want to raise
 how_much = profit_check("Do you want to increase the profit by percentage (%) or dollars ($)?", 0)
@@ -112,7 +115,7 @@ variable_cost = get_cost("Variable Cost")
 fixed_cost = get_cost("Fixed Cost")
 
 # Sort by cost...
-expenses.sort(key=lambda x: x[1], reverse=-1 )
+expenses.sort(key=lambda x: x[1], reverse=1)
 
 # Output
 print("**** Variable Items by Cost <Most Expensive to Least Expensive> ****")
