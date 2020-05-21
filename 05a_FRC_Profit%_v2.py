@@ -97,8 +97,6 @@ def get_cost(cost_type):
     return(expenses)
 
 # Main Routine
-variable_cost = []
-fixed_cost = []
 expenses = []
 total = 0
 
