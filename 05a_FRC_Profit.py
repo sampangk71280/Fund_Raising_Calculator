@@ -69,7 +69,6 @@ def intcheck(item, low):
 # code borrowed from zoom call and edited to fit
 # asks the user the name and cost of variable and fixed items
 def get_cost(cost_type):
-    expenses = [] #holds entire breakdown
 
     # Input Heading...
     print("***** {} ******".format(cost_type))
@@ -104,8 +103,8 @@ expenses = []
 total = 0
 
 # possible user response
-dollar = ["$", "dollar", "dollars"]
-percent = ["%","percentage", "percent"]
+dollar = ["$", "dollar", "dollars", "d"]
+percent = ["%","percentage", "percent", "p"]
 
 # asks user how much money they want to raise
 how_much = profit_check("Do you want to increase the profit by percentage (%) or dollars ($)?", 0)
@@ -133,7 +132,4 @@ print()
 # Add costs...
 for item in expenses:
     total += item[1]
-
-average = total / len(expenses)
-print("Average: ${:.2f}".format(average))
 
