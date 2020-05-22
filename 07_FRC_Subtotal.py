@@ -64,16 +64,33 @@ def get_cost(cost_type):
 
 # Main Routine
 expenses = []
-total = 0
+variable_total = 0
+fixed_subtotal = 0
 
+# *** VARIABLE COSTS ***
 # Gets variable and fixed costs
 variable_cost = get_cost("Variable Cost")
 # Asks the quantity of variable items needed
 quantity_needed = intcheck("Quantity Needed: ", 0)
-
+print()
 # adds the total of all variable costs
 for item in variable_cost:
-    total += item[1]
+    variable_total += item[1]
 # multiplies variable costs by quantity needed
-variable_total = total * quantity_needed
-print("Total Variable Cost: {} ".format(variable_total))
+variable_subtotal = variable_total * quantity_needed
+
+
+
+# *** FIXED COSTS ***
+fixed_cost = get_cost("Fixed Cost")
+# adds the total of all fixed costs
+for item in fixed_cost:
+    fixed_subtotal += item[1]
+
+# prints out subtotals
+print("Total Variable Cost: ${:.2f} ".format(variable_subtotal))
+print("Total Fixed Costs: ${:.2f}".format(fixed_subtotal))
+
+#prints out the total amount
+total = variable_subtotal + fixed_subtotal
+print("Total: ${}".format(total))
