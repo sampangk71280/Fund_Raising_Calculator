@@ -1,4 +1,4 @@
-# FRC 5 - seperate one component into two
+# FRC 5 - separate one component into two
 
 # to do
 # make a function that asks dollar or percentage
@@ -15,7 +15,7 @@ def dollar_percent(question):
             response = input(question).lower()
             # if response is dollar or percent, continue with main routine
             if response in dollar or response in percent:
-                break
+                return response
             # if response is invalid, keep asking
             else:
                 print(error)
@@ -23,44 +23,50 @@ def dollar_percent(question):
         except ValueError:
             print(error)
 
-# function that checks
+# number checker for price
+def intcheck(question, number):
+    valid = False
+    while not valid:
+            # error message
+            error = "Whoops! Please enter a valid number above {}!".format(number)
+
+            try:
+                response = float(input(question))
+                # if the number is above low, return the number
+                if number < response:
+                    return response
+                # if it's below low, print error until a valid response is given
+                else:
+                    print(error)
+                    print()
+
+            except ValueError:
+                print(error)
+
+# function that checks that the number given is valid and higher than minimum
 def how_much(number):
     valid = False
     while not valid:
-
-        # error message
-        number_error = "Please enter an exact number or percent you want to raise!"
-        number_zero = "Please choose a higher number than {}".format(number)
-
 
         raise_by = dollar_percent("Do you want to increase the profit by percentage (%) or dollars ($)?")
 
         keep_going = "yes"
         while keep_going == "yes":
             if raise_by in dollar:
-                profit = float(input("How much? "))
+                profit = intcheck("How much?", 0)
                 break
             # ask user what percent if they reply with percentage
             elif raise_by in percent:
-                profit = float(input("What percentage? "))
+                profit = intcheck("By what percentage? ", 0)
                 break
             else:
                 keep_going = "yes"
                 continue
 
-        # raise_by has to be higher than a minimum number
-        if number < profit:
-            return profit
-        elif number == profit:
-            print(number_zero)
-            # if not, print error message
-        elif number > profit:
-            print(number_error)
-                
 
 dollar = ["$", "dollar", "dollars", "d"]
-percent = ["%","percentage", "percent", "p"]
+percent = ["%", "percentage", "percent", "p"]
 money = how_much(0)
-print(money)
+
 
 

@@ -47,16 +47,16 @@ def profit_check(question, number):
 
 
 # number checker for price
-def intcheck(item, low):
+def intcheck(question, number):
     valid = False
     while not valid:
             # error message
-            error = "Whoops! Please enter a valid number above 0!"
+            error = "Whoops! Please enter a valid number above {}!".format(number)
 
             try:
-                response = float(input("Item Cost: $ "))
+                response = float(input(question))
                 # if the number is above low, return the number
-                if low < response:
+                if number < response:
                     return response
                 # if it's below low, print error until a valid response is given
                 else:
