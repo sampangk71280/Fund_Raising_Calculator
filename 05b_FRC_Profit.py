@@ -56,7 +56,7 @@ def how_much(number):
             # if not, print error message
         elif number > profit:
             print(number_error)
-                
+
 
 dollar = ["$", "dollar", "dollars", "d"]
 percent = ["%","percentage", "percent", "p"]
