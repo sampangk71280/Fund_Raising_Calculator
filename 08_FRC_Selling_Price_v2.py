@@ -68,8 +68,9 @@ money = intcheck(money_ask, 0)
 
 # *** VARIABLE COSTS ***
 # Gets variable costs
+# costs have been set for testing purposes
 variable_cost = [['White Mug', 1.0], ['Printing', 0.75], ['Packaging', 0.50]]
-quantity_needed = intcheck("Quantity Needed: ", 0)
+quantity_needed = intcheck("Quantity of items needed: ", 0)
 print()
 # adds the total of all variable costs
 for item in variable_cost:
@@ -79,6 +80,7 @@ variable_subtotal = variable_total * quantity_needed
 
 # *** FIXED COSTS ***
 # Gets fixed costs
+# costs have been set for testing purposes
 fixed_cost = [['Advertising', 100.0], ['Stall', 50.0]]
 # adds the total of all fixed costs
 for item in fixed_cost:
@@ -108,7 +110,6 @@ print()
 # prints out total amount
 total = variable_subtotal + fixed_subtotal
 print("Total: ${:.2f}".format(total))
-print()
 
 # calculates profit needed to make
 if profit_type == "$":
@@ -117,4 +118,11 @@ if profit_type == "$":
 else:
     profit = (total/100 * money) + total
     print("Profit: ${:.2f}".format(profit))
+
+print()
+
+# suggests selling price
+price = profit / quantity_needed
+print("Price per item: ${:.2f}".format(price))
+
 
