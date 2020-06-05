@@ -60,7 +60,7 @@ def get_cost(cost_type):
       single_expense = []
 
       # Get Item name...
-      expense_name = input("Item Name: ")
+      expense_name = not_blank("Item Name: ", "Please don't leave it blank!", "yes")
 
       # If the user enters the exit code, break the loop
       if expense_name.lower() == "xxx":
@@ -79,6 +79,38 @@ def get_cost(cost_type):
   print()  # puts space between lists / output
   return (expenses)
 
+# Makes sure that users don't leave answer blank
+def not_blank(question, error_msg, num_ok):
+    error = error_msg
+
+    valid = False
+    while not valid:
+        response = input(question)
+        has_errors = ""
+
+        if num_ok !="yes":
+            #  look at each character in string and if it's a number, complain
+            for letter in response:
+                if letter.isdigit() == True:
+                    has_errors = "yes"
+                    break
+
+        if response == "":
+            print(error)
+            continue
+        elif has_errors != "":
+            print(error)
+            continue
+        else:
+            return response
+
+
+print("***** Welcome to Fund Raiser Calculator! ***** \n"
+      "This program allows users to input item costs and it will automatically calculate a selling price!\n"
+      "To start, the program will ask how much profit you want to make. Remember to always hit <enter> after each input.\n"
+      "Enter 'xxx' in 'Item Name' if all items have been inputted.")
+print()
+
 keep_going = ""
 while keep_going == "":
     # Main Routine
@@ -87,12 +119,6 @@ while keep_going == "":
     fixed_subtotal = 0
     profit_dollar = 0
     profit_percent = 0
-
-    print("***** Welcome to Fund Raiser Calculator! ***** \n"
-        "This program allows users to input item costs and it will automatically calculate a selling price!\n"
-        "To start, the program will ask how much profit you want to make. Remember to always hit <enter> after each input. ")
-    print()
-
 
     # asks user how much money they want to raise
     profit_type = dollar_percent()
@@ -105,6 +131,7 @@ while keep_going == "":
     # the amount of profit wanted
     money = intcheck(money_ask, 0)
     quantity_needed = intcheck("Quantity of variable items needed: ", 0)
+    print()
 
     # *** VARIABLE COSTS ***
     # Gets variable costs
@@ -123,9 +150,10 @@ while keep_going == "":
     for item in fixed_cost:
         fixed_subtotal += item[1]
 
-
     # Sort by cost...
-    expenses.sort(key=lambda x: x[1], reverse=1)
+    # put in list
+    variable_cost.sort(key=lambda x: x[1], reverse=1)
+    fixed_subtotal.sort(key=lambda x: x[1], reverse=1)
 
     # Output
     # Variable costs
@@ -134,6 +162,7 @@ while keep_going == "":
         print("{}: ${:.2f}".format(item[0], item[1]))
     print("Quantity Needed: {:.0f} ".format(quantity_needed))
     print("Total Variable Cost: ${:.2f} ".format(variable_subtotal))
+
 
     print()
 
@@ -156,6 +185,8 @@ while keep_going == "":
         profit = (total/100 * money) + total
         print("Profit: ${:.2f}".format(profit))
 
+    sales_needed = total + profit
+    print("Sales Needed: ${:.2f}".format(sales_needed))
     print()
 
     # suggests selling price
